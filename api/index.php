@@ -5,6 +5,14 @@ ini_set('log_errors', '1');
 ini_set('display_errors', getenv('APP_DEBUG') === 'true' ? '1' : '0');
 ini_set('display_startup_errors', getenv('APP_DEBUG') === 'true' ? '1' : '0');
 
+putenv('LOG_CHANNEL=stderr');
+$_ENV['LOG_CHANNEL'] = 'stderr';
+$_SERVER['LOG_CHANNEL'] = 'stderr';
+
+putenv('LOG_STACK=stderr');
+$_ENV['LOG_STACK'] = 'stderr';
+$_SERVER['LOG_STACK'] = 'stderr';
+
 register_shutdown_function(function (): void {
     $error = error_get_last();
 

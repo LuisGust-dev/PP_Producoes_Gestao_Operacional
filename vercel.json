@@ -15,6 +15,7 @@
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "LOG_CHANNEL": "stderr",
+        "LOG_STACK": "stderr",
         "DB_CONNECTION": "sqlite",
         "DB_DATABASE": "/tmp/database.sqlite",
         "CACHE_STORE": "array",
