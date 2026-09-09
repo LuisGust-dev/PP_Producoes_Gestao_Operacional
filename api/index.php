@@ -51,6 +51,33 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__vercel-diagnostics') {
     return;
 }
 
+if (($_SERVER['REQUEST_URI'] ?? '') === '/__laravel-diagnostics') {
+    header('Content-Type: application/json');
+
+    try {
+        define('LARAVEL_START', microtime(true));
+
+        require __DIR__.'/../vendor/autoload.php';
+
+        $app = require_once __DIR__.'/../bootstrap/app.php';
+        $response = $app->handle(Illuminate\Http\Request::create('/login', 'GET'));
+
+        echo json_encode([
+            'status' => $response->getStatusCode(),
+            'content_preview' => substr($response->getContent(), 0, 500),
+        ]);
+    } catch (Throwable $exception) {
+        echo json_encode([
+            'exception' => $exception::class,
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+        ]);
+    }
+
+    return;
+}
+
 try {
     require __DIR__.'/../public/index.php';
 } catch (Throwable $exception) {
