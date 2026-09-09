@@ -12,4 +12,11 @@ foreach ($tmpDirectories as $directory) {
     }
 }
 
+$databasePath = '/tmp/database.sqlite';
+$seedDatabasePath = __DIR__.'/../database/vercel.sqlite';
+
+if (! file_exists($databasePath) && file_exists($seedDatabasePath)) {
+    copy($seedDatabasePath, $databasePath);
+}
+
 require __DIR__.'/../public/index.php';
