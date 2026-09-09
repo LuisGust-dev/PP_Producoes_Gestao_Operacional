@@ -64,6 +64,12 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__laravel-diagnostics') {
     header('Content-Type: application/json');
 
     try {
+        $logPath = '/tmp/logs/laravel.log';
+
+        if (file_exists($logPath)) {
+            unlink($logPath);
+        }
+
         define('LARAVEL_START', microtime(true));
 
         require __DIR__.'/../vendor/autoload.php';
@@ -73,7 +79,9 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__laravel-diagnostics') {
 
         echo json_encode([
             'status' => $response->getStatusCode(),
-            'content_preview' => substr($response->getContent(), 0, 500),
+            'manifest_exists' => file_exists(__DIR__.'/../public/build/manifest.json'),
+            'content_preview' => substr($response->getContent(), 0, 1000),
+            'log_tail' => file_exists($logPath) ? substr(file_get_contents($logPath), -4000) : null,
         ]);
     } catch (Throwable $exception) {
         echo json_encode([
