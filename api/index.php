@@ -25,6 +25,7 @@ $tmpDirectories = [
     '/tmp/views',
     '/tmp/cache',
     '/tmp/sessions',
+    '/tmp/logs',
 ];
 
 foreach ($tmpDirectories as $directory) {

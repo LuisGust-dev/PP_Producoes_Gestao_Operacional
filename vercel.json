@@ -16,6 +16,7 @@
         "APP_DEBUG": "false",
         "LOG_CHANNEL": "stderr",
         "LOG_STACK": "stderr",
+        "LOG_PATH": "/tmp/logs/laravel.log",
         "DB_CONNECTION": "sqlite",
         "DB_DATABASE": "/tmp/database.sqlite",
         "CACHE_STORE": "array",
