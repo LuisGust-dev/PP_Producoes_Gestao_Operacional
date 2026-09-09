@@ -14,6 +14,8 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
+        "APP_MAINTENANCE_DRIVER": "array",
+        "APP_MAINTENANCE_STORE": "array",
         "LOG_CHANNEL": "stderr",
         "LOG_STACK": "stderr",
         "LOG_PATH": "/tmp/logs/laravel.log",

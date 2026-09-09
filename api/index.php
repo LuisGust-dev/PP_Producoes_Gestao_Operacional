@@ -13,6 +13,14 @@ putenv('LOG_STACK=stderr');
 $_ENV['LOG_STACK'] = 'stderr';
 $_SERVER['LOG_STACK'] = 'stderr';
 
+putenv('APP_MAINTENANCE_DRIVER=array');
+$_ENV['APP_MAINTENANCE_DRIVER'] = 'array';
+$_SERVER['APP_MAINTENANCE_DRIVER'] = 'array';
+
+putenv('APP_MAINTENANCE_STORE=array');
+$_ENV['APP_MAINTENANCE_STORE'] = 'array';
+$_SERVER['APP_MAINTENANCE_STORE'] = 'array';
+
 register_shutdown_function(function (): void {
     $error = error_get_last();
 
@@ -26,6 +34,7 @@ $tmpDirectories = [
     '/tmp/cache',
     '/tmp/sessions',
     '/tmp/logs',
+    '/tmp/framework',
 ];
 
 foreach ($tmpDirectories as $directory) {
