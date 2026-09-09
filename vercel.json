@@ -1,7 +1,7 @@
 {
     "version": 2,
     "framework": null,
-    "installCommand": "npm ci",
+    "installCommand": "sh vercel-install.sh",
     "buildCommand": "npm run build",
     "outputDirectory": "public",
     "env": {
