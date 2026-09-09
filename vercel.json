@@ -16,6 +16,7 @@
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "APP_URL": "https://pproducoes-gestao-operacional-nu.vercel.app",
+        "ASSET_URL": "https://pproducoes-gestao-operacional-nu.vercel.app",
         "APP_LOCALE": "pt_BR",
         "APP_FALLBACK_LOCALE": "pt_BR",
         "APP_MAINTENANCE_DRIVER": "array",
@@ -38,15 +39,15 @@
     "routes": [
         {
             "src": "/build/(.*)",
-            "dest": "public/build/$1"
+            "dest": "/public/build/$1"
         },
         {
             "src": "/favicon.ico",
-            "dest": "public/favicon.ico"
+            "dest": "/public/favicon.ico"
         },
         {
             "src": "/robots.txt",
-            "dest": "public/robots.txt"
+            "dest": "/public/robots.txt"
         },
         {
             "src": "/(.*)",
