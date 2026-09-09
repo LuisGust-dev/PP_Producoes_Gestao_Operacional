@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.git
+.github
+.vercel
+.agents
+.claude
+.mcp.json
+node_modules
+vendor
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/testing/*
+storage/framework/views/*
+tests

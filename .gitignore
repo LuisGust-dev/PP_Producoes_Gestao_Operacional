@@ -3,6 +3,7 @@
 .env
 .env.backup
 .env.production
+.vercel/
 .agents/
 .claude/
 .mcp.json
