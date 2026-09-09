@@ -12,8 +12,12 @@
         }
     ],
     "env": {
+        "APP_NAME": "PP Producoes",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
+        "APP_URL": "https://pproducoes-gestao-operacional-nu.vercel.app",
+        "APP_LOCALE": "pt_BR",
+        "APP_FALLBACK_LOCALE": "pt_BR",
         "APP_MAINTENANCE_DRIVER": "array",
         "APP_MAINTENANCE_STORE": "array",
         "LOG_CHANNEL": "stderr",
