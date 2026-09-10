@@ -21,9 +21,13 @@ putenv('APP_MAINTENANCE_STORE=array');
 $_ENV['APP_MAINTENANCE_STORE'] = 'array';
 $_SERVER['APP_MAINTENANCE_STORE'] = 'array';
 
-putenv('SESSION_DRIVER=cookie');
-$_ENV['SESSION_DRIVER'] = 'cookie';
-$_SERVER['SESSION_DRIVER'] = 'cookie';
+putenv('SESSION_DRIVER=database');
+$_ENV['SESSION_DRIVER'] = 'database';
+$_SERVER['SESSION_DRIVER'] = 'database';
+
+putenv('SESSION_CONNECTION=sqlite');
+$_ENV['SESSION_CONNECTION'] = 'sqlite';
+$_SERVER['SESSION_CONNECTION'] = 'sqlite';
 
 putenv('SESSION_SECURE_COOKIE=true');
 $_ENV['SESSION_SECURE_COOKIE'] = 'true';
