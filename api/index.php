@@ -228,5 +228,18 @@ try {
     error_log('VERCEL_EXCEPTION: '.$exception::class.' - '.$exception->getMessage());
     error_log($exception->getTraceAsString());
 
+    if (getenv('APP_DEBUG') === 'true') {
+        header('Content-Type: application/json', true, 500);
+
+        echo json_encode([
+            'exception' => $exception::class,
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+        ]);
+
+        return;
+    }
+
     throw $exception;
 }
