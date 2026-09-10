@@ -21,6 +21,18 @@ putenv('APP_MAINTENANCE_STORE=array');
 $_ENV['APP_MAINTENANCE_STORE'] = 'array';
 $_SERVER['APP_MAINTENANCE_STORE'] = 'array';
 
+putenv('SESSION_DRIVER=cookie');
+$_ENV['SESSION_DRIVER'] = 'cookie';
+$_SERVER['SESSION_DRIVER'] = 'cookie';
+
+putenv('SESSION_SECURE_COOKIE=true');
+$_ENV['SESSION_SECURE_COOKIE'] = 'true';
+$_SERVER['SESSION_SECURE_COOKIE'] = 'true';
+
+putenv('SESSION_SAME_SITE=lax');
+$_ENV['SESSION_SAME_SITE'] = 'lax';
+$_SERVER['SESSION_SAME_SITE'] = 'lax';
+
 register_shutdown_function(function (): void {
     $error = error_get_last();
 
@@ -64,6 +76,9 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__vercel-diagnostics') {
         'vendor_exists' => file_exists(__DIR__.'/../vendor/autoload.php'),
         'public_index_exists' => file_exists(__DIR__.'/../public/index.php'),
         'views_path_writable' => is_writable('/tmp/views'),
+        'session_driver' => getenv('SESSION_DRIVER') ?: null,
+        'session_secure_cookie' => getenv('SESSION_SECURE_COOKIE') ?: null,
+        'session_same_site' => getenv('SESSION_SAME_SITE') ?: null,
     ]);
 
     return;
