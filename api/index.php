@@ -104,6 +104,51 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__laravel-diagnostics') {
     return;
 }
 
+if (($_SERVER['REQUEST_URI'] ?? '') === '/__dashboard-diagnostics') {
+    header('Content-Type: application/json');
+
+    try {
+        $logPath = '/tmp/logs/laravel.log';
+
+        if (file_exists($logPath)) {
+            unlink($logPath);
+        }
+
+        define('LARAVEL_START', microtime(true));
+
+        require __DIR__.'/../vendor/autoload.php';
+
+        $app = require_once __DIR__.'/../bootstrap/app.php';
+        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
+        $user = App\Models\User::where('email', 'admin@ppproducoes.com')->first();
+
+        if ($user) {
+            Illuminate\Support\Facades\Auth::login($user);
+        }
+
+        $controller = $app->make(App\Http\Controllers\DashboardController::class);
+        $view = $controller();
+
+        echo json_encode([
+            'user_found' => (bool) $user,
+            'view' => $view->name(),
+            'content_preview' => substr($view->render(), 0, 1000),
+            'log_tail' => file_exists($logPath) ? substr(file_get_contents($logPath), -4000) : null,
+        ]);
+    } catch (Throwable $exception) {
+        echo json_encode([
+            'exception' => $exception::class,
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+            'log_tail' => file_exists('/tmp/logs/laravel.log') ? substr(file_get_contents('/tmp/logs/laravel.log'), -4000) : null,
+        ]);
+    }
+
+    return;
+}
+
 try {
     require __DIR__.'/../public/index.php';
 } catch (Throwable $exception) {
